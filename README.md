@@ -33,3 +33,12 @@ formulario-contacto-lasalle/
 ├── .gitignore
 ├── package.json
 └── package-lock.json
+
+## Endpoints principales
+
+La aplicación expone el siguiente endpoint para el formulario de contacto:
+
+### Crear contacto
+
+```text
+POST /api/contactos
