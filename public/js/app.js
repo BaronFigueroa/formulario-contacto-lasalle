@@ -44,16 +44,20 @@ formulario.addEventListener('submit', async (event) => {
 
         const resultado = await respuesta.json();
 
-        if (respuesta.ok) {
-            mensajeResultado.textContent = resultado.mensaje;
-            formulario.reset();
-        } else {
-            mensajeResultado.textContent =
-                resultado.error || 'No fue posible procesar el formulario.';
-        }
+if (respuesta.ok) {
+    mensajeResultado.textContent =
+        resultado.mensaje || 'Formulario enviado correctamente.';
+    formulario.reset();
+} else {
+    mensajeResultado.textContent =
+        resultado.error ||
+        'No fue posible procesar el formulario. Inténtalo nuevamente.';
+}
+
+
     } catch (error) {
         console.error('Error:', error);
-        mensajeResultado.textContent =
-            'No fue posible procesar el formulario.';
+mensajeResultado.textContent =
+    'No fue posible conectar con el servidor. Inténtalo nuevamente.';
     }
 });
