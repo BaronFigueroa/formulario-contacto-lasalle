@@ -176,16 +176,16 @@ Resultado esperado: se muestra un mensaje indicando que no fue posible conectar 
 
 ## Seguridad
 
-No se deben publicar en el repositorio:
+La aplicación utiliza archivos de configuración local para almacenar valores que pueden variar según el ambiente.
 
-* Contraseñas reales.
-* Claves API.
-* Tokens.
-* Archivos `.env` con información sensible.
-* Credenciales de bases de datos.
+### Archivos que NO deben publicarse
 
-El archivo `.gitignore` evita que los archivos de configuración sensibles sean incluidos accidentalmente en Git.
+Los siguientes archivos contienen configuración local y deben permanecer fuera del repositorio:
 
+```text
+.env
+.env.test
+.env.production
 ## Git y GitHub
 
 El proyecto se gestiona mediante Git y GitHub utilizando:
