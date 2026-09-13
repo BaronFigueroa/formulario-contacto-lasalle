@@ -200,5 +200,6 @@ El proyecto se gestiona mediante Git y GitHub utilizando:
 
 ## Autor
 
-Proyecto individual desarrollado para demostrar el uso de Git y GitHub en la Actividad 5.
+Proyecto individual desarrollado para demostrar el uso de Git y GitHub en la Actividad 5 de Ingeniería de Software.
+
 **2026-2_INGENIERIA DE SOFTWARE IS G_01**
