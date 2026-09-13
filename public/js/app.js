@@ -4,6 +4,10 @@ const mensajeResultado = document.getElementById('mensajeResultado');
 formulario.addEventListener('submit', async (event) => {
     event.preventDefault();
 
+    const botonEnviar = formulario.querySelector('button[type="submit"]');
+    botonEnviar.disabled = true;
+    botonEnviar.textContent = 'Enviando...';
+
     const nombre = document.getElementById('nombre').value.trim();
     const correo = document.getElementById('correo').value.trim();
     const asunto = document.getElementById('asunto').value.trim();
@@ -14,6 +18,8 @@ formulario.addEventListener('submit', async (event) => {
     // Validar campos obligatorios
     if (!nombre || !correo || !asunto || !mensaje) {
         mensajeResultado.textContent = 'Todos los campos son obligatorios.';
+        botonEnviar.disabled = false;
+        botonEnviar.textContent = 'Enviar';
         return;
     }
 
@@ -23,6 +29,8 @@ formulario.addEventListener('submit', async (event) => {
     if (!formatoCorreo.test(correo)) {
         mensajeResultado.textContent =
             'Ingresa un correo electrónico con un formato válido.';
+        botonEnviar.disabled = false;
+        botonEnviar.textContent = 'Enviar';
         return;
     }
 
@@ -44,20 +52,24 @@ formulario.addEventListener('submit', async (event) => {
 
         const resultado = await respuesta.json();
 
-if (respuesta.ok) {
-    mensajeResultado.textContent =
-        resultado.mensaje || 'Formulario enviado correctamente.';
-    formulario.reset();
-} else {
-    mensajeResultado.textContent =
-        resultado.error ||
-        'No fue posible procesar el formulario. Inténtalo nuevamente.';
-}
-
-
+        if (respuesta.ok) {
+            mensajeResultado.textContent =
+                resultado.mensaje || 'Formulario enviado correctamente.';
+            botonEnviar.disabled = false;
+            botonEnviar.textContent = 'Enviar';
+            formulario.reset();
+        } else {
+            mensajeResultado.textContent =
+                resultado.error ||
+                'No fue posible procesar el formulario. Inténtalo nuevamente.';
+            botonEnviar.disabled = false;
+            botonEnviar.textContent = 'Enviar';
+        }
     } catch (error) {
         console.error('Error:', error);
-mensajeResultado.textContent =
-    'No fue posible conectar con el servidor. Inténtalo nuevamente.';
+        mensajeResultado.textContent =
+            'No fue posible conectar con el servidor. Inténtalo nuevamente.';
+        botonEnviar.disabled = false;
+        botonEnviar.textContent = 'Enviar';
     }
 });
