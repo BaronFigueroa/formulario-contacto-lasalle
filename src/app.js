@@ -32,13 +32,17 @@ app.get('/', (req, res) => {
     res.send('Formulario de contacto La Salle funcionando');
 });
 
-app.listen(PORT, async () => {
-    console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, async () => {
+        console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
 
-    try {
-        const result = await pool.query('SELECT NOW()');
-        console.log('Conexión a PostgreSQL exitosa:', result.rows[0]);
-    } catch (error) {
-        console.error('Error al conectar con PostgreSQL:', error.message);
-    }
-});
+        try {
+            const result = await pool.query('SELECT NOW()');
+            console.log('Conexión a PostgreSQL exitosa:', result.rows[0]);
+        } catch (error) {
+            console.error('Error al conectar con PostgreSQL:', error.message);
+        }
+    });
+}
+
+module.exports = app;
