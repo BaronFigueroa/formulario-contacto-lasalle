@@ -28,7 +28,7 @@ function validarCampo(input, errorSpanId) {
     } else if (input.type === 'email') {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!regex.test(valor)) {
-            mensaje = 'Ingresa un correo con formato válido (ej: usuario@dominio.com).';
+            mensaje = 'El correo electrónico no tiene un formato válido.';
         }
     } else if (input.id === 'nombre' && valor.length < 2) {
         mensaje = 'El nombre debe tener al menos 2 caracteres.';
